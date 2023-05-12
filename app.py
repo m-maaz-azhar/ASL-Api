@@ -1,8 +1,5 @@
 from function import *
-from keras.utils import to_categorical
 from keras.models import model_from_json
-from keras.layers import LSTM, Dense
-from keras.callbacks import TensorBoard
 from flask import Flask, request
 from flask_restful import Resource, Api
 from werkzeug.utils import secure_filename
@@ -82,6 +79,7 @@ class PredictNumber(Resource):
                 if ''.join(sentence) != '':
                     break
         if ''.join(sentence) != '':
+            
             return {"result": {"success": True, "answer": ' '.join(sentence)}}, 200
         else:
             return {"result": {"success": False, "answer": ' '.join(sentence)}}, 200
@@ -165,3 +163,5 @@ api.add_resource(PredictAlphabet, "/PredictAlphabet")
 
 if __name__ == "__main__":
     app.run()
+
+
